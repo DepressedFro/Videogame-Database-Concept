@@ -1,19 +1,19 @@
 CREATE TABLE IF NOT EXISTS publishers(
-    publisher_id int NOT NULL,
+    publisher_id int NOT NULL AUTO_INCREMENT,
     publisher_name varchar(200) NOT NULL,
     year_created year NULL,
     PRIMARY KEY (publisher_id)
 );
 
 CREATE TABLE IF NOT EXISTS developers(
-    developer_id int NOT NULL,
+    developer_id int NOT NULL AUTO_INCREMENT,
     developer_name varchar(200) NOT NULL,
     year_created year NULL,
     PRIMARY KEY (developer_id)
 );
 
 CREATE TABLE IF NOT EXISTS users(
-    user_id int NOT NULL,
+    user_id int NOT NULL AUTO_INCREMENT,
     username varchar(50) NOT NULL,
     email varchar(100) NOT NULL,
     password varchar(32) NOT NULL,
@@ -22,30 +22,30 @@ CREATE TABLE IF NOT EXISTS users(
 );
 
 CREATE TABLE IF NOT EXISTS games(
-    game_id int NOT NULL,
+    game_id int NOT NULL AUTO_INCREMENT,
     game_name varchar(400) NOT NULL,
     platform varchar(100) NOT NULL,
     release_date date NOT NULL,
     genre varchar(20) NULL,
     rating_total float NULL DEFAULT 0,
     times_rated int NULL DEFAULT 0,
-    boxart varchar(2000) NULL,
+    boxart varchar(2000) NULL DEFAULT 'N/A',
     PRIMARY KEY (game_id)
 );
 
 CREATE TABLE IF NOT EXISTS publisher_games(
     publisher_id int NOT NULL,
     game_id int NOT NULL,
-    FOREIGN KEY (publisher_id) REFERENCES publishers(publisher_id),
-    FOREIGN KEY (game_id) REFERENCES games(game_id),
+    FOREIGN KEY (publisher_id) REFERENCES publishers(publisher_id) ON DELETE CASCADE,
+    FOREIGN KEY (game_id) REFERENCES games(game_id) ON DELETE CASCADE,
     PRIMARY KEY (publisher_id, game_id)
 );
 
 CREATE TABLE IF NOT EXISTS developer_games(
     developer_id int NOT NULL,
     game_id int NOT NULL,
-    FOREIGN KEY (developer_id) REFERENCES developers(developer_id),
-    FOREIGN KEY (game_id) REFERENCES games(game_id),
+    FOREIGN KEY (developer_id) REFERENCES developers(developer_id) ON DELETE CASCADE
+    FOREIGN KEY (game_id) REFERENCES games(game_id) ON DELETE CASCADE,
     PRIMARY KEY (developer_id, game_id)
 );
 
@@ -53,8 +53,8 @@ CREATE TABLE IF NOT EXISTS user_ratings(
     user_id int NOT NULL,
     game_id int NOT NULL,
     rating float NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(user_id),
-    FOREIGN KEY (game_id) REFERENCES games(game_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (game_id) REFERENCES games(game_id) ON DELETE CASCADE,
     PRIMARY KEY (user_id, game_id)
 );
 
