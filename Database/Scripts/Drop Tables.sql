@@ -1,0 +1,7 @@
+DROP TABLE IF EXISTS publishers;
+DROP TABLE IF EXISTS developers;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS games;
+DROP TABLE IF EXISTS publisher_games;
+DROP TABLE IF EXISTS developer_games;
+DROP TABLE IF EXISTS user_ratings;
