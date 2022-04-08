@@ -1,17 +1,3 @@
-CREATE TABLE IF NOT EXISTS publishers(
-    publisher_id int NOT NULL AUTO_INCREMENT,
-    publisher_name varchar(200) NOT NULL,
-    year_created year NULL,
-    PRIMARY KEY (publisher_id)
-);
-
-CREATE TABLE IF NOT EXISTS developers(
-    developer_id int NOT NULL AUTO_INCREMENT,
-    developer_name varchar(200) NOT NULL,
-    year_created year NULL,
-    PRIMARY KEY (developer_id)
-);
-
 CREATE TABLE IF NOT EXISTS users(
     user_id int NOT NULL AUTO_INCREMENT,
     username varchar(50) NOT NULL,
@@ -24,6 +10,8 @@ CREATE TABLE IF NOT EXISTS users(
 CREATE TABLE IF NOT EXISTS games(
     game_id int NOT NULL AUTO_INCREMENT,
     game_name varchar(400) NOT NULL,
+    developer varchar(200) NOT NULL,
+    publisher varchar(200) NOT NULL,
     platform varchar(100) NOT NULL,
     release_date date NOT NULL,
     genre varchar(20) NULL,
@@ -32,22 +20,6 @@ CREATE TABLE IF NOT EXISTS games(
     rating float NULL DEFAULT 0,
     boxart varchar(2000) NULL DEFAULT '/home/grayc/grayc-project/src/components/games/boxarts/DefaultBoxart.png',
     PRIMARY KEY (game_id)
-);
-
-CREATE TABLE IF NOT EXISTS publisher_games(
-    publisher_id int NOT NULL,
-    game_id int NOT NULL,
-    FOREIGN KEY (publisher_id) REFERENCES publishers(publisher_id) ON DELETE CASCADE,
-    FOREIGN KEY (game_id) REFERENCES games(game_id) ON DELETE CASCADE,
-    PRIMARY KEY (publisher_id, game_id)
-);
-
-CREATE TABLE IF NOT EXISTS developer_games(
-    developer_id int NOT NULL,
-    game_id int NOT NULL,
-    FOREIGN KEY (developer_id) REFERENCES developers(developer_id) ON DELETE CASCADE,
-    FOREIGN KEY (game_id) REFERENCES games(game_id) ON DELETE CASCADE,
-    PRIMARY KEY (developer_id, game_id)
 );
 
 CREATE TABLE IF NOT EXISTS user_ratings(

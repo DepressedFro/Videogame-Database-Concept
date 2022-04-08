@@ -1,4 +1,3 @@
-
 // nodemon used to restart server on changes
 
 const express = require('express');
@@ -62,8 +61,7 @@ app.get('/:id', (req, res) => {
     pool.getConnection((err, connection) => {
         if(err) throw err
         
-
-        connection.query('SELECT * from games WHERE game_id = ?', [req.params.id], (err, rows) => {
+        connection.query('SELECT * from games WHERE games.game_id = ?', [req.params.id], (err, rows) => {
             connection.release() // return the connection to pool
 
             if (!err) {
@@ -82,7 +80,6 @@ app.get('', (req, res) => {
   pool.getConnection((err, connection) => {
       if(err) throw err
       
-
       connection.query('SELECT * from games', (err, rows) => {
           connection.release() // return the connection to pool
 
@@ -103,9 +100,10 @@ app.put('', (req, res) => {
   pool.getConnection((err, connection) => {
       if(err) throw err
       
-      const {game_id, game_name, platform, release_date, genre, boxart} = req.body
+      const {game_id, game_name, developer, publisher, platform, release_date, genre, boxart} = req.body
 
-      connection.query('UPDATE games SET game_name = ?, platform = ?, release_date = ?, genre = ?, boxart = ? WHERE game_id = ?', [game_name, platform, release_date, genre, boxart, game_id], (err, rows) => {
+
+      connection.query('UPDATE games SET game_name = ?, developer = ?, publisher = ?, platform = ?, release_date = ?, genre = ?, boxart = ? WHERE game_id = ?', [game_name, platform, developer, publisher, release_date, genre, boxart, game_id], (err, rows) => {
           connection.release() // return the connection to pool
 
           if (!err) {
@@ -137,8 +135,7 @@ app.delete('/:id', (req, res) => {
   })
 })
 
-// starting the server
+// start the server
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
 });
-
