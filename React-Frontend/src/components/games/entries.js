@@ -15,34 +15,34 @@ function Entries() {
  
   return (
     <div className="home">
-      <div class="container">
+      <div className="container">
       <div>
         
         {!hidden ?
-        <form action="http://52.86.154.61:3000/" method="POST" class="addForm" target="_blank" onsubmit="window.location.replace('http://52.86.154.61:23219/games')">
+        <form action="http://52.86.154.61:3000/" method="POST" className="addForm" target="_blank">
             
             <div>
-                <label for="game_name">Game Title:</label>
+                <label htmlFor="game_name">Game Title:</label>
                 <input type="text" name="game_name" id="game_name" required></input>
             </div>
             <div>
-                <label for="platform">Platform:</label>
+                <label htmlFor="platform">Platform:</label>
                 <input type="text" name="platform" id="platform" required></input>
             </div>
             <div>
-                <label for="developer">Developer:</label>
+                <label htmlFor="developer">Developer:</label>
                 <input type="text" name="developer" id="developer" required></input>
             </div>
             <div>
-                <label for="publisher">Publisher:</label>
+                <label htmlFor="publisher">Publisher:</label>
                 <input type="text" name="publisher" id="publisher"required></input>
             </div>
             <div>
-                <label for="release_date">Release Date:</label>
+                <label htmlFor="release_date">Release Date:</label>
                 <input type="date" name="release_date" id="release_date"  required></input>
             </div>
             <div>
-                <label for="genre">Genre:</label>
+                <label htmlFor="genre">Genre:</label>
                 <input type="text" name="genre" id="genre" required></input>
             </div>
             <div>
@@ -55,19 +55,19 @@ function Entries() {
         
         
         : null}
-        <button onClick={() => setHidden(s => !s)}  class="newButton">
+        <button onClick={() => setHidden(s => !s)}  className="newButton">
         ADD NEW
         </button>
       </div>
       {data &&
             data.map((game) => {
                 return (        
-                <ul>   
-                <li key={game.game_id}>
+                <ul key={game.game_id}>   
+                <li>
                   <Link to ={"/games/" + game.game_id}>
                   <img
                   id = "boxarts"
-                  class="img-fluid rounded mb-4 mb-lg-0"
+                  className="img-fluid rounded mb-4 mb-lg-0"
                   src={defaultBoxart}
                   alt={game.game_name + " Boxart"}
                   width = "150"
