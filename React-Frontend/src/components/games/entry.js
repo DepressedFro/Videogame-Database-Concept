@@ -5,8 +5,6 @@ import defaultBoxart from '/home/grayc/grayc-project/src/components/games/boxart
 function Entry() {
   let { postSlug } = useParams();
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState({game_id: 'a', game_name: 'b'});
-  const [error, setError] = useState(null);
   const [hidden, setHidden] = useState(true);
   
   useEffect(() => {
@@ -32,7 +30,6 @@ function Entry() {
   //Update the selected game and then refresh the page
   function handleSubmit(event) {
     event.preventDefault();
-
     const boop = new FormData(event.target);
 
     const value = Object.fromEntries(boop.entries());
@@ -47,13 +44,16 @@ function Entry() {
       body: JSON.stringify(value) // body data type must match "Content-Type" header
 
     });
+    
     document.location.reload(true)
   }
 
-  const form = document.querySelector('form');
+
+    const form = document.querySelector('form');
   //check if form exists first
   if (form)
-  { form.addEventListener('submit', handleSubmit);}
+  {   form.addEventListener('submit', handleSubmit);}
+
 
 
   return (

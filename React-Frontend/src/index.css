@@ -23,3 +23,12 @@ ul {
   margin: 5px 0 0 15px;
 }
 
+.newButton{
+  float:right;
+  left: 400px;
+  padding: 20px;
+}
+
+.addForm{
+  float:right;
+}

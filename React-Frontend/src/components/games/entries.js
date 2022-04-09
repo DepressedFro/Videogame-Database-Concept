@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 
 function Entries() {
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState({game_id: 'a', game_name: 'b'});
-  const [error, setError] = useState(null);
   const [hidden, setHidden] = useState(true);
   
   useEffect(() => {
@@ -21,7 +19,7 @@ function Entries() {
       <div>
         
         {!hidden ?
-        <form action="http://52.86.154.61:3000/" method="POST">
+        <form action="http://52.86.154.61:3000/" method="POST" class="addForm" target="_blank" onsubmit="window.location.replace('http://52.86.154.61:23219/games')">
             
             <div>
                 <label for="game_name">Game Title:</label>
@@ -51,12 +49,13 @@ function Entries() {
                 
                 <input type="hidden" name="boxart" id="boxart" value="/home/grayc/grayc-project/src/components/games/boxarts/DefaultBoxart.png"></input>
             </div>
+            <button type="reset">Reset</button>
             <button type="submit">Submit</button>
         </form>
         
         
         : null}
-        <button onClick={() => setHidden(s => !s)}>
+        <button onClick={() => setHidden(s => !s)}  class="newButton">
         ADD NEW
         </button>
       </div>
