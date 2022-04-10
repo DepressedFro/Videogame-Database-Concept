@@ -3,7 +3,7 @@ import React from "react";
 
 function User() {
   return (
-    <div className="user">
+    <div className="home">
       <div className="container">
         <div className="row align-items-center my-5">
           <div className="col-lg-12">
